@@ -22,7 +22,7 @@ AppAsset::register($this);
 </head>
 <body>
 
-<?php $this->beginBody() ?>
+<?php $this->beginBody('block1') ?>
     <div class="wrap">
         <?php
             NavBar::begin([
@@ -55,7 +55,8 @@ AppAsset::register($this);
             <?= $content ?>
         </div>
     </div>
-
+<?php $this->endBody('block1') ?>
+<div class="clearfix"></div>
     <footer class="footer">
         <div class="container">
             <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
@@ -63,7 +64,6 @@ AppAsset::register($this);
         </div>
     </footer>
 
-<?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -22,8 +22,8 @@ class ItemController extends Controller
    		$queryParams = Yii::$app->request->queryParams; 
         $keyword = (isset($queryParams['SearchItems']['search'])) ? $queryParams['SearchItems']['search'] : '';
         $page = (isset($queryParams['page'])) ? $queryParams['page'] : 0;
-        $limit = (isset($queryParams['limit'])) ? $queryParams['limit'] : 10;
-   		$offset = (isset($queryParams['offset'])) ? $queryParams['offset'] : 0;               
+        $limit = 10;
+   		$offset = ($page * $limit) - $limit;               
         
    		$model = new SearchItems();
 	  	$url = 'http://api3.beachinsoft.com/?r=api/search&engine=1&keywords='.$keyword.'&api_key=testdev&offset='.$offset.'&limit='.$limit; 
@@ -36,17 +36,18 @@ class ItemController extends Controller
 		curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($crl, CURLOPT_HTTPGET,true);
 		$response = curl_exec($crl);
-		$items = json_decode($response, true);		
-       
-       	if (Yii::$app->request->isAjax) {
-       		
-       		return $this->renderAjax('_news', [
-                'moreitems' => $items['result']['results'],
-                'nextPage' => $page + 1
-            ]);
+		$items = json_decode($response, true);	
+		if(count($items['result']['results']) > 0) {
+			foreach($items['result']['results'] as $key => $result) {
+				$items['result']['results'][$key]['created_time'] = date('M d Y', $result['created_at']);
+			}
+		}
+       	if (Yii::$app->request->isAjax) {            
+            echo  json_encode(array('total' => '10', 'result' => $items['result']['results']));
+            die;       		
        	} else {
        		return $this->render('index',[
-                'model' => $model, 'items' => $items['result']['results'] ,'total_item' => $items['result']['item_count'], 'nextPage' => $page + 1]);	
+                'model' => $model]);	
        	}   
     }
    

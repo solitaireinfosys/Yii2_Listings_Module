@@ -2,12 +2,15 @@ html,
 body {
     height: 100%;
 }
-
+.site-contact{
+    position:relative;
+    padding-bottom:100px;
+}
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+    margin: 0 auto ;
+    padding: 0 0 0px;
 }
 
 .wrap > .container {
@@ -15,6 +18,9 @@ body {
 }
 
 .footer {
+    position:relative;
+    bottom:0px;
+    z-index: 1;
     height: 60px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
@@ -88,4 +94,69 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+/* style for waterfall grid */
+.wf-container {
+    margin: 0 auto;
+}
+.wf-container:before,.wf-container:after {
+    content: '';
+    display: table;
+}
+.wf-container:after {
+    clear: both;
+}
+.wf-box {
+    margin: 10px;
+}
+.wf-box img { 
+    display: block;
+    width: 100%;
+}
+.wf-box .content {
+    border: 1px solid #ccc;
+    border-top-width: 0;
+    padding: 5px 8px;
+}
+.wf-column {
+    float: left;
+}
+
+@media screen and (min-width: 768px) {
+    .wf-container { width: 750px; }
+}
+@media screen  and (min-width: 992px) {
+    .wf-container { width: 970px; }
+}
+@media screen and (min-width: 1200px) {
+    .wf-container { width: 1170px; }
+}
+.main-img{
+    float:left;
+    width:100%;
+    margin-bottom:10px;
+}
+.img-wrap{
+    float:left;
+    width:40px;
+    height:40px;
+    margin-right:10px;
+    overflow: hidden;
+    border-radius:50%;
+}
+.author-name{
+    float:left;
+    width: calc(100% - 50px);
+}
+.author-name h4{
+    font-size:13px;
+}
+.float-right{
+    float:right;
+}
+.horizantal{
+    margin-bottom:5px;
+}
+.word-wrap-break{
+    word-wrap: break-word;
 }

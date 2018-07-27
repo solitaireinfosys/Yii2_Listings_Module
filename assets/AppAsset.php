@@ -19,9 +19,16 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'waterfall/demos/css/reset.css',
+        'waterfall/demos/css/waterfall.css'
     ];
     public $js = [
-        'js/script.js',
+        //'js/responsive_waterfall.js',
+        //'js/app.js',
+        //'waterfall/demos/js/libs/jquery/jquery.js',
+        'waterfall/demos/js/libs/handlebars/handlebars.js',
+        'waterfall/demos/js/waterfall.min.js',     
+        'js/script.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
